@@ -7,7 +7,7 @@ import cors from 'cors';
 import { AppError } from './errors/AppError';
 import routes from './routes';
 
-import './database/connect';
+// import './database/connect';
 
 const app = express();
 

@@ -18,6 +18,15 @@ class PostsRepository implements IPostsRepository {
 
     return post;
   }
+
+  async findAll(): Promise<Post[]> {
+    const posts = await this.ormRepository
+      .createQueryBuilder('posts')
+      .leftJoinAndSelect('posts.users', 'users')
+      .getMany();
+
+    return posts;
+  }
 }
 
 export { PostsRepository };

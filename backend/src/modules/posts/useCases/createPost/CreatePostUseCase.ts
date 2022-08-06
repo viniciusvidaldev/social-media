@@ -1,5 +1,5 @@
-import { Post } from '../../../entities/Post';
-import { IPostsRepository } from '../repositories/IPostsRepository';
+import { Post } from '../../../../entities/Post';
+import { IPostsRepository } from '../../repositories/IPostsRepository';
 
 interface IRequest {
   text: string;
@@ -14,8 +14,6 @@ class CreatePostUseCase {
   }
 
   async execute({ text, user_id }: IRequest): Promise<Post> {
-    console.log(user_id);
-
     const post = await this.postsRepository.create({
       text,
       user_id,

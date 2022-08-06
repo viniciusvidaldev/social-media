@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PostsRepository } from '../repositories/implementations/PostsRepository';
+import { PostsRepository } from '../../repositories/implementations/PostsRepository';
 import { CreatePostUseCase } from './CreatePostUseCase';
 
 class CreatePostController {
