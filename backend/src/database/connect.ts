@@ -1,15 +1,17 @@
 import { resolve } from 'path';
 import { DataSource } from 'typeorm';
-+
+
+const { db_host } = process.env;
+
 export const mySqlDatabase = new DataSource({
   type: 'mysql',
-  host: 'database',
+  host: db_host,
   port: 3306,
   username: 'root',
   password: 'root',
   database: 'social_media',
   entities: [
-    resolve(__dirname, '..', 'modules', '**', 'entities,', '*.ts'),
+    'src/entities/*.ts',
   ],
   migrations: [
     resolve(__dirname, 'migrations', '*.ts'),
