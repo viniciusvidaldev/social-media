@@ -27,6 +27,12 @@ class User {
     if (!this.id) {
       this.id = v4();
     }
+
+    const avatar_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png';
+
+    if (!this.avatar) {
+      this.avatar = avatar_url;
+    }
   }
 }
 
