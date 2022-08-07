@@ -8,21 +8,24 @@ import * as S from './styles';
 
 import { defaultTheme } from '../../styles/themes/default';
 import { Header } from '../Header';
+import { AuthProvider } from '../../contexts/AuthContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyles />
+      <AuthProvider>
+        <ThemeProvider theme={defaultTheme}>
+          <GlobalStyles />
 
-        <S.Container>
-          <Header />
+          <S.Container>
+            <Header />
 
-          <S.Wrapper>
-            <AppRoutes />
-          </S.Wrapper>
-        </S.Container>
-      </ThemeProvider>
+            <S.Wrapper>
+              <AppRoutes />
+            </S.Wrapper>
+          </S.Container>
+        </ThemeProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
