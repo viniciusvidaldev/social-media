@@ -4,7 +4,8 @@ import { UpdatePostUseCase } from './UpdatePostUseCase';
 
 class UpdatePostController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, text } = request.body;
+    const { text } = request.body;
+    const { id } = request.params;
 
     const updatePostUseCase = new UpdatePostUseCase(new PostsRepository());
 

@@ -29,4 +29,16 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.background};
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary.main};
+  }
 `;

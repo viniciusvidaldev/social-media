@@ -30,49 +30,56 @@ export function Login() {
   }
 
   return (
-    <S.Container>
-      <S.FormHeader>
-        <h1>Login</h1>
-      </S.FormHeader>
+    <>
+      <S.Header>
+        <h1>SocialMedia™</h1>
+      </S.Header>
 
-      <form onSubmit={handleSubmit(handleLoginSubmit)}>
-        <S.FormGroup>
-          <Input
-            id="email-input-register"
-            placeholder="E-mail"
-            leftIcon={<MdOutlineEmail />}
-            {...register('email')}
-          />
-        </S.FormGroup>
+      <S.Container>
 
-        <S.FormGroup>
-          <Input
-            id="password-input-register"
-            placeholder="Password"
-            leftIcon={<BiLockAlt />}
-            {...register('password')}
-          />
-        </S.FormGroup>
+        <S.FormHeader>
+          <h1>Login</h1>
+        </S.FormHeader>
 
-        <S.SubmitButton>
-          <Button type="submit">
-            Login
-          </Button>
-        </S.SubmitButton>
+        <form onSubmit={handleSubmit(handleLoginSubmit)}>
+          <S.FormGroup>
+            <Input
+              id="email-input-register"
+              placeholder="E-mail"
+              leftIcon={<MdOutlineEmail />}
+              {...register('email')}
+            />
+          </S.FormGroup>
 
-        <S.AnotherOption>
-          <p>
-            Don&apos;t have an account yet?
-            {' '}
-            <Link to="/register">
-              <span>
-                Register
-              </span>
-            </Link>
-          </p>
-        </S.AnotherOption>
-      </form>
+          <S.FormGroup>
+            <Input
+              id="password-input-register"
+              placeholder="Password"
+              leftIcon={<BiLockAlt />}
+              {...register('password')}
+            />
+          </S.FormGroup>
 
-    </S.Container>
+          <S.SubmitButton>
+            <Button type="submit">
+              Login
+            </Button>
+          </S.SubmitButton>
+
+          <S.AnotherOption>
+            <p>
+              Don&apos;t have an account yet?
+              {' '}
+              <Link to="/register">
+                <span>
+                  Register
+                </span>
+              </Link>
+            </p>
+          </S.AnotherOption>
+        </form>
+
+      </S.Container>
+    </>
   );
 }

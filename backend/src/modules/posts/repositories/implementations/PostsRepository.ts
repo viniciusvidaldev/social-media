@@ -22,10 +22,10 @@ class PostsRepository implements IPostsRepository {
   async findAll(): Promise<Post[]> {
     const posts = await this.ormRepository
       .createQueryBuilder('posts')
+      .orderBy('posts.created_at', 'DESC')
       .select()
       .leftJoin('posts.user', 'user')
-      .addSelect('user.name')
-      .addSelect('user.id')
+      .addSelect(['user.name', 'user.id', 'user.avatar'])
       .getMany();
 
     return posts;

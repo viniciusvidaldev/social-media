@@ -33,58 +33,65 @@ export function Register() {
   }
 
   return (
-    <S.Container>
-      <S.FormHeader>
-        <h1>Register</h1>
-      </S.FormHeader>
+    <>
+      <S.Header>
+        <h1>SocialMedia™</h1>
+      </S.Header>
 
-      <form onSubmit={handleSubmit(handleRegisterSubmit)}>
-        <S.FormGroup>
-          <Input
-            id="name-input-register"
-            placeholder="Name"
-            leftIcon={<FiUser />}
-            {...register('name')}
-          />
-        </S.FormGroup>
+      <S.Container>
 
-        <S.FormGroup>
-          <Input
-            id="email-input-register"
-            placeholder="E-mail"
-            leftIcon={<MdOutlineEmail />}
-            {...register('email')}
-          />
-        </S.FormGroup>
+        <S.FormHeader>
+          <h1>Register</h1>
+        </S.FormHeader>
 
-        <S.FormGroup>
-          <Input
-            id="password-input-register"
-            placeholder="Password"
-            leftIcon={<BiLockAlt />}
-            {...register('password')}
-          />
-        </S.FormGroup>
+        <form onSubmit={handleSubmit(handleRegisterSubmit)}>
+          <S.FormGroup>
+            <Input
+              id="name-input-register"
+              placeholder="Name"
+              leftIcon={<FiUser />}
+              {...register('name')}
+            />
+          </S.FormGroup>
 
-        <S.SubmitButton>
-          <Button type="submit">
-            Register
-          </Button>
-        </S.SubmitButton>
+          <S.FormGroup>
+            <Input
+              id="email-input-register"
+              placeholder="E-mail"
+              leftIcon={<MdOutlineEmail />}
+              {...register('email')}
+            />
+          </S.FormGroup>
 
-        <S.AnotherOption>
-          <p>
-            Already registered?
-            {' '}
-            <Link to="/login">
-              <span>
-                Login
-              </span>
-            </Link>
-          </p>
-        </S.AnotherOption>
-      </form>
+          <S.FormGroup>
+            <Input
+              id="password-input-register"
+              placeholder="Password"
+              leftIcon={<BiLockAlt />}
+              {...register('password')}
+            />
+          </S.FormGroup>
 
-    </S.Container>
+          <S.SubmitButton>
+            <Button type="submit">
+              Register
+            </Button>
+          </S.SubmitButton>
+
+          <S.AnotherOption>
+            <p>
+              Already registered?
+              {' '}
+              <Link to="/login">
+                <span>
+                  Login
+                </span>
+              </Link>
+            </p>
+          </S.AnotherOption>
+        </form>
+
+      </S.Container>
+    </>
   );
 }

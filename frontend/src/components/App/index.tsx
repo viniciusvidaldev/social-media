@@ -18,8 +18,6 @@ function App() {
           <GlobalStyles />
 
           <S.Container>
-            <Header />
-
             <S.Wrapper>
               <AppRoutes />
             </S.Wrapper>
