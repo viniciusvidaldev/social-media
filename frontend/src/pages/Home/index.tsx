@@ -63,14 +63,15 @@ export function Home() {
   }, []);
 
   async function findAllPosts() {
-    setIsLoading(true);
     const { data } = await postsService.listPosts();
     setPosts(data);
-    setIsLoading(false);
   }
 
   useEffect(() => {
+    setIsLoading(true);
+
     findAllPosts();
+    setIsLoading(false);
   }, []);
 
   async function handleCreatePost() {
