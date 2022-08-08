@@ -10,5 +10,6 @@
  - Crie a imagem da api utilizando o seguinte comando `docker build -t social-media .`.
  - Após isso, suba o docker-compose da aplicação utilizando `docker-compose up` no terminal.
  - Por fim, abra uma nova aba no terminal e rode o comando `yarn typeorm migration:run -d src/database/connect.ts`, para criar as tabelas do banco de dados.
- 
+ - Agora que o backend está rodando corretamente, abra um novo terminal e vá para a pasta do frontend `cd frontend`.
+ - Instale as dependências rodando no terminal o comando `yarn` ou `npm install`.
  - Inicie o projeto utilizando `npm run start` ou `yarn start`.
