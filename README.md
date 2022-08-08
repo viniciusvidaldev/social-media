@@ -4,7 +4,7 @@
 
  - Clone o projeto no seu computador.
  - Vá para a pasta clonada executando `cd social-meida`.
- - Abra o backend utilizando `code backend`.
+ - Abra o backend utilizando `cd backend` e, após, `code .`.
  - Instale as dependências rodando no terminal o comando `yarn` ou `npm install`.
  - Crie um novo arquivo chamado `.env` e cole nele o conteúdo do arquivo `.env.example`, adicionando algum valor à variável `JWT_SECRET`.
  - Crie a imagem da api utilizando o seguinte comando `docker build -t social-media .`.
