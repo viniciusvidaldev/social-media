@@ -10,7 +10,6 @@ import { UpdatePostController } from '../modules/posts/useCases/updatePost/Updat
 import { DeletePostController } from '../modules/posts/useCases/deletePost/DeletePostController';
 import { FindUserController } from '../modules/users/useCases/findUser/FindUserController';
 import { CreateLikeController } from '../modules/likes/useCases/createLike/CreateLikeController';
-import { FindPostLikesController } from '../modules/likes/useCases/findPostLikes/FindPostLikesController';
 
 const router = Router();
 
@@ -24,7 +23,6 @@ const updatePostController = new UpdatePostController();
 const deletePostController = new DeletePostController();
 
 const createLikeController = new CreateLikeController();
-const findPostLikesController = new FindPostLikesController();
 
 router.post('/user/create', createUserController.handle);
 router.post('/auth', authenticateUserController.handle);
@@ -33,9 +31,8 @@ router.get('/user', ensureAuthenticated, findUserController.handle);
 router.post('/post/create', ensureAuthenticated, createPostController.handle);
 router.patch('/post/:id', ensureAuthenticated, updatePostController.handle);
 router.delete('/post/:id', ensureAuthenticated, deletePostController.handle);
-router.get('/posts', findAllPostsController.handle);
+router.get('/posts', ensureAuthenticated, findAllPostsController.handle);
 
 router.post('/like/create/:id', ensureAuthenticated, createLikeController.handle);
-router.get('/likes/:id', findPostLikesController.handle);
 
 export default router;
