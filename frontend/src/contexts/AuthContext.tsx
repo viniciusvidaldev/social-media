@@ -1,6 +1,7 @@
 import {
   createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState,
 } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 
@@ -86,7 +87,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       navigate('/');
     } catch (err: any) {
-      console.log(err.response.data);
+      toast.error(err.response.data.message);
     }
   }, []);
 
@@ -103,12 +104,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       navigate('/');
     } catch (err: any) {
-      console.log(err.response.data);
+      toast.error(err.response.data.message);
     }
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('authentication-app.token');
+    localStorage.removeItem('social-media.token');
     api.defaults.headers.common.Authorization = '';
     setUser(null);
     navigate('/login');

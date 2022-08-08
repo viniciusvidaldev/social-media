@@ -54,7 +54,8 @@
     "react/jsx-no-useless-fragment": "off",
     "react/jsx-no-bind": "off",
     "class-methods-use-this": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "consistent-return": "off"
   },
   "settings": {
     "import/resolver": {

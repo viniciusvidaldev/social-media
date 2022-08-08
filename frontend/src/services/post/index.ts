@@ -1,4 +1,6 @@
+import toast from 'react-hot-toast';
 import { api } from '../api';
+import { Like } from '../like';
 
 export interface Post {
   id: string;
@@ -17,6 +19,7 @@ export interface PostWithUser {
     name: string;
     avatar: string;
   }
+  likes: Like[];
 }
 
 class PostsService {
@@ -29,16 +32,16 @@ class PostsService {
       await api.post('/post/create', {
         text,
       });
-    } catch (error: any) {
-      console.log(error);
+    } catch (err: any) {
+      toast.error(err.response.data.message);
     }
   }
 
   async deletePost(id: string) {
     try {
       await api.delete(`/post/${id}`);
-    } catch (error: any) {
-      console.log(error);
+    } catch (err: any) {
+      toast.error(err.response.data.message);
     }
   }
 
@@ -48,7 +51,7 @@ class PostsService {
         text,
       });
     } catch (err: any) {
-      console.log(err);
+      toast.error(err.response.data.message);
     }
   }
 }

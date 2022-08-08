@@ -45,3 +45,26 @@ export const Input = styled.input`
     font-weight: 500;
   }
 `;
+
+export const Error = styled.div`
+  margin-top: 0.5rem;
+
+  p {
+    font-size: 0.875rem;
+  }
+`;
+
+export const RightIcon = styled.button`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+  background: none;
+  border: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: ${({ theme }) => theme.colors.text.placeholder};
+  }
+`;

@@ -11,8 +11,8 @@ interface IRequest {
 class UpdatePostUseCase {
   private postsRepository: IPostsRepository;
 
-  constructor(usersRepository: IPostsRepository) {
-    this.postsRepository = usersRepository;
+  constructor(postsRepository: IPostsRepository) {
+    this.postsRepository = postsRepository;
   }
 
   async execute({ text, id, user_id }: IRequest): Promise<Post> {

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { HiOutlinePencil, HiPencilAlt } from 'react-icons/hi';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { BsThreeDots } from 'react-icons/bs';
 import { BiTrashAlt } from 'react-icons/bi';
-import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Button } from '../../components/Button';
 
 import { Header } from '../../components/Header';
@@ -12,6 +13,8 @@ import { postsService, PostWithUser } from '../../services/post';
 
 import * as S from './styles';
 import { EditModal } from '../../components/EditModal';
+import { likesService } from '../../services/like';
+import { SpinnerLoader } from '../../components/SpinnerLoader';
 
 interface PostOptionsModalProps {
   isOpen: boolean;
@@ -26,6 +29,7 @@ export function Home() {
     post: null,
   });
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useAuth();
 
@@ -34,7 +38,9 @@ export function Home() {
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = '0px';
+
       const { scrollHeight } = textAreaRef.current;
+
       textAreaRef.current.style.height = `${scrollHeight}px`;
     }
   }, [postContent]);
@@ -57,8 +63,10 @@ export function Home() {
   }, []);
 
   async function findAllPosts() {
+    setIsLoading(true);
     const { data } = await postsService.listPosts();
     setPosts(data);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -73,11 +81,13 @@ export function Home() {
     await postsService.createPost(postContent);
     findAllPosts();
     setPostContent('');
+    toast.success('Post created');
   }
 
   async function handleDeletePost(id: string) {
     await postsService.deletePost(id);
     findAllPosts();
+    toast.success('Post deleted');
   }
 
   async function handleEditPost(content: string) {
@@ -87,10 +97,17 @@ export function Home() {
       isOpen: false,
       post: null,
     });
+    toast.success('Post edited');
+  }
+
+  async function handleLikePost(post_id: string) {
+    await likesService.createLike(post_id);
+    findAllPosts();
   }
 
   return (
     <>
+
       <S.HeaderContainer>
         <Header />
       </S.HeaderContainer>
@@ -118,6 +135,14 @@ export function Home() {
         </div>
 
       </S.CreatePostContainer>
+
+      {isLoading && (
+        <S.Loader>
+          <div className="loader">
+            <SpinnerLoader isLoading={isLoading} size={50} />
+          </div>
+        </S.Loader>
+      )}
 
       <S.Posts>
         {posts.map((post) => (
@@ -153,6 +178,32 @@ export function Home() {
 
               <div className="content">
                 <p>{post.text}</p>
+              </div>
+
+              <div className="likes">
+                <div className="count">
+                  <p>
+                    {post.likes.length}
+                  </p>
+
+                  {
+                    post.likes.find((like) => like.user_id === user?.id) ? (
+                      <AiFillHeart />
+                    ) : (
+                      <AiOutlineHeart />
+                    )
+                  }
+                </div>
+
+                <div className="likeButton">
+                  <Button type="button" onClick={() => handleLikePost(post.id)}>
+                    <div className="buttonLikeContent">
+                      <AiOutlineHeart />
+                      Like
+                    </div>
+                  </Button>
+                </div>
+
               </div>
             </div>
 

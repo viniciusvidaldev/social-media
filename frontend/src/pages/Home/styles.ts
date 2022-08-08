@@ -4,6 +4,13 @@ export const HeaderContainer = styled.div`
   margin-bottom: 3rem;
 `;
 
+export const Loader = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+`;
+
 export const CreatePostContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,7 +37,9 @@ export const CreatePostContainer = styled.div`
     height: 2rem;
     margin-top: 0.5rem;
     align-self: flex-end;
-
+    .loader {
+    margin: 0 auto;
+  }
     .buttonContent {
       display: flex;
       align-items: center;
@@ -122,6 +131,50 @@ export const Post = styled.div`
     .content {
       font-size: 0.875rem;
       overflow-wrap: break-word;
+    }
+
+    .likes {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 16px;
+      
+      .count {
+        display: flex;
+        align-items: center;
+        height: 16px;
+        
+        p {
+          font-weight: 600;
+          font-family: 0.875rem;
+        }
+
+        svg {
+          width: 16px;
+          height: 16px;
+
+          margin-left: 0.25rem;
+          color: ${({ theme }) => theme.colors.pink};
+        }
+      }
+
+      .likeButton {
+        width: 75px;
+        height: 25px;
+
+        .buttonLikeContent {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          svg {
+           margin-right: 0.25rem; 
+           width: 16px;
+           height: 16px;
+          }
+        }
+      }
     }
   }
 `;

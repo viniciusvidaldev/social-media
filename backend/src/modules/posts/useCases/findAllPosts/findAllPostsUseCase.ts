@@ -1,17 +1,32 @@
 import { Post } from '../../../../entities/Post';
+import { ILikesRepository } from '../../../likes/repositories/ILikesRepository';
 import { IPostsRepository } from '../../repositories/IPostsRepository';
 
 class FindAllPostsUseCase {
   private postsRepository: IPostsRepository;
 
-  constructor(usersRepository: IPostsRepository) {
-    this.postsRepository = usersRepository;
+  private likesRepository: ILikesRepository;
+
+  constructor(postsRepository: IPostsRepository, likesRepository: ILikesRepository) {
+    this.postsRepository = postsRepository;
+    this.likesRepository = likesRepository;
   }
 
-  async execute(): Promise<Post[]> {
+  async execute() {
     const posts = await this.postsRepository.findAll();
 
-    return posts;
+    const updatedPosts = await Promise.all(posts.map(async (post) => {
+      const likes = await this.likesRepository.findByPostId(post.id);
+
+      const formatedPost = {
+        ...post,
+        likes,
+      };
+
+      return formatedPost;
+    }));
+
+    return updatedPosts;
   }
 }
 

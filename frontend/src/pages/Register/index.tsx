@@ -50,6 +50,7 @@ export function Register() {
               id="name-input-register"
               placeholder="Name"
               leftIcon={<FiUser />}
+              error={errors.name}
               {...register('name')}
             />
           </S.FormGroup>
@@ -59,6 +60,7 @@ export function Register() {
               id="email-input-register"
               placeholder="E-mail"
               leftIcon={<MdOutlineEmail />}
+              error={errors.email}
               {...register('email')}
             />
           </S.FormGroup>
@@ -68,6 +70,8 @@ export function Register() {
               id="password-input-register"
               placeholder="Password"
               leftIcon={<BiLockAlt />}
+              error={errors.password}
+              type="password"
               {...register('password')}
             />
           </S.FormGroup>

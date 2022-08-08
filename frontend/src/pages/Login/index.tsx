@@ -48,6 +48,7 @@ export function Login() {
               placeholder="E-mail"
               leftIcon={<MdOutlineEmail />}
               {...register('email')}
+              error={errors.email}
             />
           </S.FormGroup>
 
@@ -57,6 +58,8 @@ export function Login() {
               placeholder="Password"
               leftIcon={<BiLockAlt />}
               {...register('password')}
+              type="password"
+              error={errors.password}
             />
           </S.FormGroup>
 
